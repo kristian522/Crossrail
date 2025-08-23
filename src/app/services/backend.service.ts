@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 // Javasolt típusdefiníciók a kérésekhez és válaszokhoz.
 // Ezek segítenek elkerülni a gépelési hibákat a kódban.
@@ -35,7 +36,8 @@ export interface TrainInfoRequest {
 export class BackendService {
 
   // A Raspberry Pi-on futó szerver címe.
-  private serverUrl = 'http://62.201.95.91:3000';
+ // private serverUrl = 'http://62.201.95.91:3000';
+  private serverUrl =  environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
