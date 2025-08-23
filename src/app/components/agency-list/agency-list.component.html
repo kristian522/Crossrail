@@ -1,0 +1,24 @@
+<div class="agency-list-container">
+  <h2>Elérhető Ügynökségek (MÁV API-ból)</h2>
+
+  <div *ngIf="isLoading" class="loading-message">
+    Betöltés...
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    Hiba: {{ error }}
+  </div>
+
+  <ul *ngIf="!isLoading && !error && agencies.length > 0" class="agency-items">
+    <li *ngFor="let agency of agencies" class="agency-item">
+      <h3>{{ agency.name }}</h3>
+      <p>ID: {{ agency.id }}</p>
+      <p *ngIf="agency.url">Weboldal: <a [href]="agency.url" target="_blank">{{ agency.url }}</a></p>
+      <p>Időzóna: {{ agency.timezone }}</p>
+    </li>
+  </ul>
+
+  <div *ngIf="!isLoading && !error && agencies.length === 0" class="no-results-message">
+    Nincs megjeleníthető ügynökség.
+  </div>
+</div>

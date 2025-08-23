@@ -1,0 +1,24 @@
+<div class="modal fade" id="inputFormModal" tabindex="-1" aria-labelledby="inputFormModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inputFormModalLabel">{{ modalTitle }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <input type="text" class="form-control" [placeholder]="inputPlaceholder1" [(ngModel)]="inputValue1" name="input1">
+          </div>
+          <div class="mb-3">
+            <input type="date" class="form-control" [placeholder]="inputPlaceholder2" [(ngModel)]="inputValue2" name="input2">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn-secondary" (click)="onCheck()">Ellenőriz</button> -->
+        <button type="button" class="btn-primary" data-bs-dismiss="modal" (click)="onSubmit()">Mehet</button>
+      </div>
+    </div>
+  </div>
+</div>

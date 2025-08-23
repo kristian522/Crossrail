@@ -1,0 +1,71 @@
+.app-header {
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 1.1rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 0.5rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.user-icon {
+  font-size: 1.5rem;
+}
+
+.time-container {
+  text-align: center;
+  padding: 10px;
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+  padding: 0.5rem;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.date-container {
+  text-align: center;
+  padding: 10px;
+}
+
+.havaria-container {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  padding-top: 5px;
+}
+
+.havaria-strip {
+  display: inline-block;
+  color: var(--havaria-text);
+  font-weight: bold;
+  font-size: 0.9rem;
+  animation: marquee 20s linear infinite;
+}
+
+h1, h2, h3, h4, h5, h6{
+     margin: 0px;
+}

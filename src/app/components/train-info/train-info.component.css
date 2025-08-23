@@ -1,0 +1,163 @@
+/* Leválasztja a tartalmat a headerről */
+:host {
+  display: block;
+  padding: 1rem;
+}
+
+.details-container {
+  margin: 0 auto;
+}
+
+/* információs kártya */
+.info-card {
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 5px 5px 20px rgb(0, 0, 0);
+}
+
+.train-identity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--main-color);
+  padding-bottom: 1rem;
+}
+
+.train-type {
+  font-size: 1.8rem;
+  font-family: MNR2007;
+  font-weight: normal;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}
+
+.train-name-number {
+  display: flex;
+  align-items: center;
+}
+
+.train-name-number .number {
+  padding: 0.5rem;
+}
+
+.train-name-number .name {
+  padding: 0.5rem;
+}
+
+.delay {
+  color: var(--havaria-text);
+  font-size: 3rem;
+  font-style: italic;
+}
+
+/* Útvonal szakaszok */
+.route-summary {
+  padding-top: 1rem;
+}
+
+.segment {
+  display: flex;
+}
+
+.segment .icon {
+  margin-right: 0.8rem;
+  font-family: MNR2007;
+}
+
+/* Figyelmeztető sáv */
+.alert-box {
+  background-color: var(--havaria-text);
+  color: var(--main-color);
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+/* Idővonal */
+.timeline {
+  margin-top: 2rem;
+  padding-left: 0.5rem;
+}
+
+.stop {
+  display: flex;
+  position: relative;
+  min-height: 60px;
+}
+
+.line-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circle {
+  width: 18px;
+  height: 18px;
+  background-color: var(--main-color);
+  border: 5px solid var(--secondary-color);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.line {
+  width: 5px;
+  background-color: var(--secondary-color);
+  flex-grow: 1;
+  z-index: 1;
+}
+
+.stop:last-child .line {
+  display: none;
+  /* Az utolsó elem alatt ne legyen vonal */
+}
+
+.times {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 15 px;
+}
+
+.scheduler-times{}
+
+.arrival{
+  padding: 0rem 0.5rem;
+}
+
+.arrival-real{
+  font-weight: bolder;
+  padding: 0rem 0.5rem;
+}
+
+.real-times{}
+
+.departure{
+  padding: 0rem 0.5rem;
+}
+
+.departure-real{
+  font-weight: bolder;
+  padding: 0rem 0.5rem;
+}
+
+.station-info {
+  padding-left: 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.station-name {
+}
+
+.platform {
+}
+
+.loading-container {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}

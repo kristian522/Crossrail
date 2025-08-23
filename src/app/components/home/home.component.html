@@ -1,0 +1,9 @@
+<div class="menu-container">
+  <div class="menu-item-list">
+    <div *ngFor="let item of menuItems; let i = index" class="menu-item" (mouseenter)="onHover(i)" (mouseleave)="onLeave()" (click)="navigateTo(item)">
+      <div class="circle" [ngClass]="{'hovered': hoveredIndex === i}"></div>
+      <div class="line" [ngClass]="{'hovered': hoveredIndex === i}"></div>
+      <div class="menu-text">{{ item.name }}</div>
+    </div>
+  </div>
+

@@ -1,0 +1,30 @@
+<div class="search-form-container">
+    <h2>Keresés</h2>
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="fromPlace">Indulási hely:</label>
+            <select id="fromPlace" formControlName="fromPlace">
+                <option value="">Válassz indulási állomást...</option>
+                <option *ngIf="isLoading" value="">Betöltés...</option>
+                <option *ngIf="error" value="">Hiba a betöltés során</option>
+                <option *ngFor="let station of stations" [value]="station.name">
+                    {{ station.name }}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="toPlace">Érkezési hely:</label>
+            <select id="toPlace" formControlName="toPlace">
+                <option value="">Válassz érkezési állomást...</option>
+                <option *ngIf="isLoading" value="">Betöltés...</option>
+                <option *ngIf="error" value="">Hiba a betöltés során</option>
+                <option *ngFor="let station of stations" [value]="station.name">
+                    {{ station.name }}
+                </option>
+            </select>
+        </div>
+
+        <button type="submit" [disabled]="!searchForm.valid || isLoading">Keresés</button>
+    </form>
+</div>

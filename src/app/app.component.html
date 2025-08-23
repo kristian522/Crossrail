@@ -1,0 +1,24 @@
+<header *ngIf="showGlobalElements" class="app-header">
+  <div class="user-info">
+    <span class="user-icon"><i class="fa-solid fa-circle-user"></i></span>
+    <h4>Üdv, {{ username }}</h4>
+  </div>
+  <div class="time-container">
+    <h2>{{currentTime}}</h2>
+  </div>
+</header>
+<main>
+  <!--   <app-input-form></app-input-form> -->
+  <router-outlet></router-outlet>
+  <!--   <app-search-form></app-search-form> -->
+  <!--   <app-agency-list></app-agency-list> -->
+</main>
+<footer *ngIf="showGlobalElements" class="app-footer">
+  <div class="date-container">
+    <h2>{{ currentDate }}</h2>
+  </div>
+  <!--   <div class="havaria-container">
+    <div class="havaria-strip">{{ havariaMessage }}</div>
+  </div> -->
+</footer>
+<app-input-form (formSubmitted)="onFormSubmitted($event)"></app-input-form>
