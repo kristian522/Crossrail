@@ -46,7 +46,7 @@ export class BackendService {
    * @returns Observable, ami egy Station objektumokból álló tömböt tartalmaz.
    */
   getStations(): Observable<Station[]> {
-    return this.http.post<Station[]>(`${this.serverUrl}/api/stations`, {});
+    return this.http.post<Station[]>(`${this.serverUrl}/stations`, {});
   }
 
   /**
@@ -55,7 +55,7 @@ export class BackendService {
    * @returns Observable a menetrendi adatokkal.
    */
   getStationInfo(requestBody: StationInfoRequest): Observable<any> {
-    return this.http.post<any>(`${this.serverUrl}/api/stationInfo`, requestBody);
+    return this.http.post<any>(`${this.serverUrl}/station-info`, requestBody);
   }
 
   /**
@@ -63,7 +63,7 @@ export class BackendService {
  * @param requestBody A vonat száma és a dátum.
  */
   getTrainInfo(requestBody: TrainInfoRequest): Observable<any> {
-    return this.http.post<any>(`${this.serverUrl}/api/trainInfo`, requestBody);
+    return this.http.post<any>(`${this.serverUrl}/train-info`, requestBody);
   }
 
 }
