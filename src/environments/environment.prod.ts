@@ -1,5 +1,5 @@
 // Éles környezet beállításai (ng build)
 export const environment = {
   production: true,
-  apiUrl: process.env.NG_APP_API_URL
+  apiUrl: process.env['NG_APP_API_URL']
 };
