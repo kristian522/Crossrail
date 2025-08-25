@@ -51,7 +51,7 @@
 
 
 
-      <div class="station-info">
+      <div class="station-info" (click)="showStationDetails(stop)" style="cursor: pointer;">
         <span class="station-name">{{ stop.station.name }}</span>
         <span class="platform" [ngStyle]="{ 'color': checkTrackColor(stop.startTrackType)}">{{ stop.endTrack || '-' }}</span>
       </div>

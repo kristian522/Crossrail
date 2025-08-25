@@ -51,3 +51,11 @@ body {
     transform: translateX(-100%);
   }
 }
+/* html, body { height: 100%; } */
+
+/* Ez a szabály biztosítja, hogy az Angular Material által létrehozott
+   felugró elemek (autocomplete, menü, stb.) mindig a legfelső rétegen,
+   még a Bootstrap modális ablakok felett is megjelenjenek. */
+.cdk-overlay-container {
+  z-index: 9999 !important;
+}

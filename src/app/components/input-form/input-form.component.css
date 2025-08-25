@@ -76,3 +76,20 @@
   border-color: var(--accent-color);
   font-weight: bold;
 }
+
+.autocomplete-container {
+  position: relative;
+}
+
+.autocomplete-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1056; /* Legyen magasabb, mint a modal z-indexe */
+  max-height: 200px;
+  overflow-y: auto;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

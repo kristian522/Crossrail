@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 
@@ -16,7 +16,8 @@ export class TrainDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
   ) {
     this.trainDetails$ = this.dataService.trainDetails$;
     this.trainScheduler$ = this.dataService.trainScheduler$;
@@ -61,5 +62,20 @@ export class TrainDetailsComponent implements OnInit {
 
       signColor(sign: any) {
       return "#"+sign; 
+  }
+
+  /**
+   * ÚJ METÓDUS: Átnavigál a kiválasztott állomás információs oldalára.
+   * @param stop A megálló objektum, amire a felhasználó kattintott.
+   */
+  showStationDetails(stop: any): void {
+    // Kiolvassuk a dátumot az aktuális URL-ből.
+    const travelDate = this.route.snapshot.queryParamMap.get('date') || new Date().toISOString().split('T')[0];
+
+    // Navigáció a '/station-info' útvonalra az állomás nevével
+    // és a dátummal, mint query paraméter.
+    this.router.navigate(['/station-info', stop.station.name], {
+      queryParams: { date: travelDate }
+    });
   }
 }

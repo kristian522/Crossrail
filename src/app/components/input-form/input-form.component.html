@@ -6,18 +6,44 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <input type="text" class="form-control" [placeholder]="inputPlaceholder1" [(ngModel)]="inputValue1" name="input1">
+        <form (ngSubmit)="onSubmit()">
+          
+          <div *ngIf="isStationSearch" class="autocomplete-container">
+            <label for="stationInput" class="form-label">Állomás</label>
+            <input type="text"
+                   id="stationInput"
+                   class="form-control"
+                   placeholder="Kezdje el gépelni az állomás nevét..."
+                   [formControl]="stationControl"
+                   autocomplete="off">
+            
+            <ul class="list-group autocomplete-results" *ngIf="(filteredStations$ | async) as stations">
+              <li *ngIf="stations.length > 0">
+                <button type="button" 
+                        *ngFor="let station of stations" 
+                        class="list-group-item list-group-item-action" 
+                        (click)="selectStation(station.name)">
+                  {{ station.name }}
+                </button>
+              </li>
+            </ul>
           </div>
-          <div class="mb-3">
-            <input type="date" class="form-control" [placeholder]="inputPlaceholder2" [(ngModel)]="inputValue2" name="input2">
+
+          <div *ngIf="!isStationSearch">
+            <label for="trainInput" class="form-label">Vonatszám</label>
+            <input type="text" id="trainInput" class="form-control" [formControl]="trainNumberControl" placeholder="pl. 806">
           </div>
+
+          <div class="mt-2">
+            <label for="dateInput" class="form-label">Dátum</label>
+            <input type="date" id="dateInput" class="form-control" [formControl]="dateControl">
+          </div>
+
+          <div *ngIf="errorMessage" class="alert alert-danger mt-2">{{ errorMessage }}</div>
         </form>
       </div>
       <div class="modal-footer">
-        <!-- <button type="button" class="btn-secondary" (click)="onCheck()">Ellenőriz</button> -->
-        <button type="button" class="btn-primary" data-bs-dismiss="modal" (click)="onSubmit()">Mehet</button>
+        <button type="button" class="btn-primary" (click)="onSubmit()">Mehet</button>
       </div>
     </div>
   </div>

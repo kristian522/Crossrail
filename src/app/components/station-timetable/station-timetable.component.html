@@ -2,7 +2,8 @@
   <div *ngIf="(stationInfo$ | async) as station" class="info-card">
     <div class="station-identity">
       <div class="station-name-number">
-        <h1 class="name">{{ station.name || 'NAME'}}</h1> <p class="number">({{ station.code || 'CODE' }})</p>  
+        <h1 class="name">{{ station.name || 'NAME'}}</h1>
+        <p class="number">({{ station.code || 'CODE' }})</p>
       </div>
     </div>
     <div class="service-summary">
@@ -16,27 +17,51 @@
     </div> -->
   </div>
 
-  <div *ngIf="(departuresTimetable$ | async) as timetable" class="timetable-container">
-    <div *ngIf="timetable.length > 0; else nostations">
-      <div *ngFor="let station of timetable" class="station-card">
-        <div class="station-header">
-          <span *ngIf="station.viszonylatiJel" class="train-picto" [ngStyle]="{ 'color': signColor(station.viszonylatiJel.fontSzinKod)}">{{ station.viszonylatiJel.sign.character ||'VSZJel' }}</span>
-          <span *ngIf="!station.viszonylatiJel" class="train-picto" [ngStyle]="{ 'color': signColor(station.kind.foregroundColorCode)}">{{ station.kind.sign.character || 'SIGN' }}</span>
-          <span class="train-number">{{ station.code }}</span>
-          <span class="train-name">{{ station.name }}</span>
-          <span class="station-platform" [ngStyle]="{ 'color': checkTrackColor(station.startTrackType)}">Vágány: {{ station.startTrack || '-' }}</span>
-        </div>
-        <div class="station-relation">
-          <span>{{ station.endStation.name }}</span>
-        </div>
-        <div class="departures-time">
-          <span [ngStyle]="{'color': checkColor(station.arrive, station.actualOrEstimatedArrive)}">Érkezés: {{ station.arrive| date:'HH:mm' }}</span>
-          <span [ngStyle]="{'color': checkColor(station.start, station.actualOrEstimatedStart)}">Indulás: {{ station.start| date:'HH:mm' }}</span>
-          <span class="delay" [style.color]="station.havarianInfok.aktualisKeses > 0 ? 'red' : 'green'">Késés: {{ station.havarianInfok.aktualisKeses}}'</span>
+  <div class="btn-group d-flex" role="group">
+  <button type="button" 
+          class="btn w-100"
+          [ngClass]="currentView === 'departures' ? 'btn-primary' : 'btn-outline-primary'"
+          (click)="setView('departures')">
+    Induló vonatok
+  </button>
+  <button type="button" 
+          class="btn w-100"
+          [ngClass]="currentView === 'arrivals' ? 'btn-primary' : 'btn-outline-primary'"
+          (click)="setView('arrivals')">
+    Érkező vonatok
+  </button>
+</div>
+
+    <div *ngIf="(displayTimetable$ | async) as timetable" class="timetable-container">
+      <div *ngIf="timetable.length > 0; else nostations">
+        <div *ngFor="let station of timetable" class="station-card" (click)="showTrainDetails(station)">
+          <div class="station-header">
+            <span *ngIf="station.viszonylatiJel" class="train-picto"
+              [ngStyle]="{ 'color': signColor(station.viszonylatiJel.fontSzinKod)}">{{
+              station.viszonylatiJel.sign.character ||'VSZJel' }}</span>
+            <span *ngIf="!station.viszonylatiJel" class="train-picto"
+              [ngStyle]="{ 'color': signColor(station.kind.foregroundColorCode)}">{{ station.kind.sign.character ||
+              'SIGN' }}</span>
+            <span class="train-number">{{ station.code }}</span>
+            <span class="train-name">{{ station.name }}</span>
+            <span class="station-platform" [ngStyle]="{ 'color': checkTrackColor(station.startTrackType)}">Vágány: {{
+              station.startTrack || '-' }}</span>
+          </div>
+          <div class="station-relation">
+            <span>{{ station.endStation.name }}</span>
+          </div>
+          <div class="departures-time">
+            <span [ngStyle]="{'color': checkColor(station.arrive, station.actualOrEstimatedArrive)}">Érkezés: {{
+              station.arrive| date:'HH:mm' }}</span>
+            <span [ngStyle]="{'color': checkColor(station.start, station.actualOrEstimatedStart)}">Indulás: {{
+              station.start| date:'HH:mm' }}</span>
+            <span class="delay" [style.color]="station.havarianInfok.aktualisKeses > 0 ? 'red' : 'green'">Késés: {{
+              station.havarianInfok.aktualisKeses}}'</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
   <ng-template #nostations>
     <p class="info-text">Az állomáson a következő időszakban nincs induló vagy érkező vonat.</p>
   </ng-template>

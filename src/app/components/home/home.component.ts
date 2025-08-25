@@ -40,7 +40,7 @@ export class HomeComponent {
       default:
         return;
     }
-    this.modalService.openModal(title, placeholder1, placeholder2);
+    this.modalService.openModal(item.name, '', '');
   }
 
   onHover(index: number): void {

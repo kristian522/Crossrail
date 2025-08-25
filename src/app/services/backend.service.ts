@@ -36,7 +36,7 @@ export interface TrainInfoRequest {
 export class BackendService {
 
   // A Raspberry Pi-on futó szerver címe.
- // private serverUrl = 'http://62.201.95.91:3000';
+//  private serverUrl = 'http://62.201.95.91:3000';
   private serverUrl =  environment.apiUrl;
 
   constructor(private http: HttpClient) { }
@@ -55,7 +55,7 @@ export class BackendService {
    * @returns Observable a menetrendi adatokkal.
    */
   getStationInfo(requestBody: StationInfoRequest): Observable<any> {
-    return this.http.post<any>(`${this.serverUrl}/station-info`, requestBody);
+    return this.http.post<any>(`${this.serverUrl}/stationInfo`, requestBody);
   }
 
   /**
@@ -63,7 +63,7 @@ export class BackendService {
  * @param requestBody A vonat száma és a dátum.
  */
   getTrainInfo(requestBody: TrainInfoRequest): Observable<any> {
-    return this.http.post<any>(`${this.serverUrl}/train-info`, requestBody);
+    return this.http.post<any>(`${this.serverUrl}/trainInfo`, requestBody);
   }
 
 }

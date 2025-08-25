@@ -24,7 +24,7 @@ import { TrainDetailsComponent } from './components/train-info/train-info.compon
     AppRoutingModule, // <-- JAVÍTÁS: Ez biztosítja a <router-outlet> működését.
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
