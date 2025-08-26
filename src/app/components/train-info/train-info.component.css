@@ -116,31 +116,36 @@
 }
 
 .times {
-  display: flex;
-  flex-direction: column;
-  padding: 0px 15 px;
+  min-width: 120px; /* Fix szélesség, hogy ne csússzanak el az állomásnevek */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Két egyenlő oszlop */
+  grid-template-rows: auto auto;    /* Két sor */
+  gap: 2px 10px;                   /* Kicsi rés a sorok és oszlopok között */
+  padding: 0 15px;
 }
 
-.scheduler-times{}
+/* AZ ÚJ, FONTOS RÉSZ: 
+  Minden időpontot a saját, fix helyére teszünk a rácsban.
+*/
 
-.arrival{
-  padding: 0rem 0.5rem;
+.arrival, .arrival-real {
+  grid-column: 1; /* Az érkezési idők MINDIG az 1. oszlopba kerülnek */
+  text-align: left; /* Igazítsuk őket balra az oszlopon belül */
 }
 
-.arrival-real{
-  font-weight: bolder;
-  padding: 0rem 0.5rem;
+.departure, .departure-real {
+  grid-column: 2; /* Az indulási idők MINDIG a 2. oszlopba kerülnek */
+  text-align: right; /* Igazítsuk őket jobbra az oszlopon belül */
 }
 
-.real-times{}
-
-.departure{
-  padding: 0rem 0.5rem;
+.arrival, .departure {
+  grid-row: 1; /* A menetrendi idők MINDIG az 1. sorba kerülnek */
+  font-size: 0.9em;
 }
 
-.departure-real{
-  font-weight: bolder;
-  padding: 0rem 0.5rem;
+.arrival-real, .departure-real {
+  grid-row: 2; /* A valós idejű adatok MINDIG a 2. sorba kerülnek */
+  font-weight: bold;
 }
 
 .station-info {

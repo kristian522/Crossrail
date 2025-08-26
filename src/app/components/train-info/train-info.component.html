@@ -2,13 +2,16 @@
   <div *ngIf="(trainDetails$ | async) as train" class="info-card">
     <div class="train-identity">
       <div class="train-name-number">
-        <span *ngIf="train.viszonylatiJel" class="train-type">{{ train.viszonylatiJel.sign.character ||'VSZJel' }}</span>
+        <span *ngIf="train.viszonylatiJel" class="train-type">{{ train.viszonylatiJel.sign.character ||'VSZJel'
+          }}</span>
         <span *ngIf="!train.viszonylatiJel" class="train-type">{{ train.kind.sign.character || 'SIGN' }}</span>
         <h1 class="number">{{ train.code }}</h1>
         <h2 *ngIf="train.name" class="name">{{ train.name || 'NAME' }}</h2>
         <h2 *ngIf="!train.name" class="name">{{ train.kind.name || 'KIND.NAME' }}</h2>
       </div>
-      <span class="delay" *ngIf="train.havarianInfok.aktualisKeses" [style.color]="train.havarianInfok.aktualisKeses > 0 ? 'red' : 'green'">{{ train.havarianInfok.aktualisKeses || '999' }}'</span>
+      <span class="delay" *ngIf="train.havarianInfok.aktualisKeses"
+        [style.color]="train.havarianInfok.aktualisKeses > 0 ? 'red' : 'green'">{{ train.havarianInfok.aktualisKeses ||
+        '999' }}'</span>
     </div>
     <div class="route-summary">
       <div *ngFor="let kind of train.kindsToDisplay" class="segment">
@@ -36,29 +39,37 @@
       <div class="line-container">
         <div class="circle"></div>
         <div class="line"></div>
-      </div>      
-      
+      </div>
+
       <div class="times">
-        <div class="scheduler-times">
-          <span class="arrival">{{ stop.arrive | date:'HH:mm'  }}</span>
-          <span class="departure">{{ stop.start | date:'HH:mm' }}</span>
-        </div>
-        <div class="real-times">
-          <span class="arrival-real" [ngStyle]="{'color': checkColor(stop.arrive, stop.actualOrEstimatedArrive)}">{{ stop.actualOrEstimatedArrive | date:'HH:mm' }}</span>
-          <span class="departure-real" [ngStyle]="{'color': checkColor(stop.start, stop.actualOrEstimatedStart)}">{{ stop.actualOrEstimatedStart | date:'HH:mm' }}</span>
-        </div>
+        <span class="arrival" *ngIf="stop.arrive">
+          {{ stop.arrive | date:'HH:mm' }}
+        </span>
+        <span class="departure" *ngIf="stop.start">
+          {{ stop.start | date:'HH:mm' }}
+        </span>
+
+        <span class="arrival-real" *ngIf="stop.actualOrEstimatedArrive"
+          [ngStyle]="{'color': checkColor(stop.arrive, stop.actualOrEstimatedArrive)}">
+          {{ stop.actualOrEstimatedArrive | date:'HH:mm' }}
+        </span>
+        <span class="departure-real" *ngIf="stop.actualOrEstimatedStart"
+          [ngStyle]="{'color': checkColor(stop.start, stop.actualOrEstimatedStart)}">
+          {{ stop.actualOrEstimatedStart | date:'HH:mm' }}
+        </span>
       </div>
 
 
 
       <div class="station-info" (click)="showStationDetails(stop)" style="cursor: pointer;">
         <span class="station-name">{{ stop.station.name }}</span>
-        <span class="platform" [ngStyle]="{ 'color': checkTrackColor(stop.startTrackType)}">{{ stop.endTrack || '-' }}</span>
+        <span class="platform" [ngStyle]="{ 'color': checkTrackColor(stop.startTrackType)}">{{ stop.endTrack || '-'
+          }}</span>
       </div>
     </div>
   </div>
 
-  <div *ngIf="(trainDetails$ | async) as train" class="info-card" style="text-align: center;">
+  <div *ngIf="(trainDetails$ | async) as train" class="info-card" style="text-align: center; margin-bottom: 100px;">
     <p>{{train.footer}}</p>
   </div>
 

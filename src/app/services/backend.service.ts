@@ -36,7 +36,7 @@ export interface TrainInfoRequest {
 export class BackendService {
 
   // A Raspberry Pi-on futó szerver címe.
-//  private serverUrl = 'http://62.201.95.91:3000';
+  //private serverUrl = 'http://62.201.95.91:3000';
   private serverUrl =  environment.apiUrl;
 
   constructor(private http: HttpClient) { }
